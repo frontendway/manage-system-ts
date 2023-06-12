@@ -1,4 +1,4 @@
 import http from './http'
-import type { Data } from './types'
+import type { ArbitrarilyData } from './types'
 
-export const loginApi = (params: Data) => http.post('/test', params)
+export const loginApi = (params: ArbitrarilyData) => http.post('/sys/login', params)

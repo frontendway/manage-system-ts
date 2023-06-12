@@ -1,9 +1,10 @@
 import axios from 'axios'
-import type { AxiosRequestConfig, AxiosResponse } from 'axios'
-import type { Data } from './types'
+import type { AxiosRequestConfig } from 'axios'
+import type { ArbitrarilyData, ResponseData } from './types'
+import { ElMessage } from 'element-plus'
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: 'https://www.fastmock.site/mock/31450493ed987ee4de2e058fe4a35578/api',
   timeout: 15000
 })
 
@@ -16,7 +17,13 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   resp => {
-    return resp
+    const { code, desc } = resp.data
+    if (code !== '1000') {
+      ElMessage.error(desc)
+      return Promise.reject(desc)
+    }
+
+    return resp.data
   },
   err => {
     return Promise.reject(err)
@@ -24,18 +31,14 @@ instance.interceptors.response.use(
 )
 
 interface Http {
-  get: (url: string, data?: Data, config?: AxiosRequestConfig<unknown>) => Promise<AxiosResponse>
-  post: (url: string, data?: Data, config?: AxiosRequestConfig<unknown>) => Promise<AxiosResponse>
+  get: (url: string, data?: ArbitrarilyData, config?: AxiosRequestConfig) => Promise<ResponseData>
+  post: (url: string, data?: ArbitrarilyData, config?: AxiosRequestConfig) => Promise<ResponseData>
 }
 
 const http: Http = {
   get (url, data, config) {
-    return instance.get(url, {
-      params: data,
-      ...config
-    })
+    return instance.get(url, { params: data, ...config })
   },
-
   post (url, data, config) {
     return instance.post(url, data, config)
   }

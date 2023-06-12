@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-outer">
     <el-form
       ref="loginFormRef"
       :model="loginForm"
@@ -35,6 +35,11 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { loginApi } from '@/api/login'
+import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
+
+const store = useStore()
+const router = useRouter()
 
 const loginFormRef = ref<FormInstance>()
 
@@ -58,17 +63,20 @@ const rules = reactive<FormRules>({
 })
 
 const submitForm = () => {
-  if (!loginFormRef.value) return
+  const loginFormRefValue = loginFormRef.value
+  if (!loginFormRefValue) return
 
-  loginFormRef.value.validate((valid) => {
+  loginFormRefValue.validate((valid) => {
     if (!valid) return
 
     const params = {
       ...loginForm
     }
     loginApi(params)
-      .then(() => {
-        console.log('登录成功')
+      .then((resp) => {
+        const { token } = resp.data
+        store.commit('user/setToken', token)
+        router.push('/')
       })
   })
 }
@@ -76,5 +84,8 @@ const submitForm = () => {
 </script>
 
 <style lang="scss" scoped>
-
+.login-outer{
+  width: 50%;
+  margin: 0px auto;
+}
 </style>
