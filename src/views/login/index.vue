@@ -11,6 +11,7 @@
         label="用户名"
         prop="username"
       >
+        <svg-icon url="https://res.lgdsunday.club/user.svg" />
         <el-input v-model="loginForm.username" />
       </el-form-item>
       <el-form-item
