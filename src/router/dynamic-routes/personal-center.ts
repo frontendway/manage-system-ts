@@ -9,7 +9,7 @@ const personalCenter: RouteRecordRaw = {
     {
       path: 'personalCenter',
       name: 'personalCenter',
-      component: () => import('@/views/personalCenter/index.vue')
+      component: () => import('@/views/personal-center/index.vue')
     }
   ]
 }
