@@ -1,12 +1,13 @@
 <template>
   <div
     v-if="isExternal"
-    class="svg-icon-outer"
+    class="svg-icon"
+    :class="{'svg-icon-external': isExternal}"
     :style="externalIconStyle"
   />
   <svg
     v-else
-    class="svg-icon-outer"
+    class="svg-icon"
   >
     <use :xlink:href="innerIconLink" />
   </svg>
@@ -38,11 +39,12 @@ const innerIconLink = computed(() => `#icon-${props.url}`)
 </script>
 
 <style scoped lang="scss">
-.svg-icon-outer{
+.svg-icon{
   width: 1em;
   height: 1em;
   display: inline-block;
-  fill: currentColor;
+}
+.svg-icon-external{
   background-color: currentColor;
   mask-size: cover !important;
 }

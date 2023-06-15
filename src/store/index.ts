@@ -4,7 +4,7 @@ import type { InjectionKey } from 'vue'
 
 export interface RootState {}
 
-interface State extends RootState {
+export interface State extends RootState {
   user: UserState
 }
 

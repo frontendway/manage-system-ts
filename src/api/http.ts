@@ -2,6 +2,8 @@ import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
 import type { ArbitrarilyData, ResponseData } from './types'
 import { ElMessage } from 'element-plus'
+import store from '@/store'
+import type { State } from '@/store'
 
 const instance = axios.create({
   baseURL: 'https://www.fastmock.site/mock/31450493ed987ee4de2e058fe4a35578/api',
@@ -10,6 +12,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
+    const token = (store.state as State).user.token
+    if (token) {
+      config.headers.token = token
+    }
+
     return config
   },
   err => Promise.reject(err)
@@ -17,10 +24,10 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   resp => {
-    const { code, desc } = resp.data
-    if (code !== '1000') {
-      ElMessage.error(desc)
-      return Promise.reject(desc)
+    const { code, message } = resp.data
+    if (code !== 200) {
+      ElMessage.error(message)
+      return Promise.reject(message)
     }
 
     return resp.data

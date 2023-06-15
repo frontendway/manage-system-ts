@@ -1,10 +1,10 @@
 export interface ArbitrarilyData {
-  [key: string]: unknown
+  [key: string]: any
 }
 
 export type ResponseData = {
-  code: string
-  desc: string
+  code: number
+  message: string
   data: ArbitrarilyData
-  [key: string]: unknown
+  [key: string]: any
 }

@@ -12,13 +12,20 @@
         prop="username"
       >
         <svg-icon url="https://res.lgdsunday.club/user.svg" />
-        <el-input v-model="loginForm.username" />
+        <el-input
+          v-model="loginForm.username"
+          style="width: 400px;"
+        />
       </el-form-item>
       <el-form-item
         label="密码"
         prop="username"
       >
-        <el-input v-model="loginForm.password" />
+        <svg-icon url="password" />
+        <el-input
+          v-model="loginForm.password"
+          style="width: 400px;"
+        />
       </el-form-item>
       <el-form-item>
         <el-button

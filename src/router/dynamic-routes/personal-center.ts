@@ -1,17 +1,17 @@
 import Layout from '@/components/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-const personalCenterRoute: RouteRecordRaw = {
+const personalCenter: RouteRecordRaw = {
   path: '/personal',
   name: 'personal',
   component: Layout,
   children: [
     {
-      path: '/personalCenter',
+      path: 'personalCenter',
       name: 'personalCenter',
       component: () => import('@/views/personalCenter/index.vue')
     }
   ]
 }
 
-export default personalCenterRoute
+export default personalCenter

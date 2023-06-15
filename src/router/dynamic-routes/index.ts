@@ -1,8 +1,8 @@
-import personalCenterRoute from './personal-center-route'
+import personalCenter from './personal-center'
 import type { RouteRecordRaw } from 'vue-router'
 
 const dynamicRoutes: RouteRecordRaw[] = [
-  personalCenterRoute
+  personalCenter
 ]
 
 export default dynamicRoutes
