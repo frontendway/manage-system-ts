@@ -1,13 +1,16 @@
 import type { MutationTree, ActionTree, GetterTree } from 'vuex'
 import type { RootState } from '../index'
 import { setItem, getItem } from '@/utils/storage'
+import { fetchUserProfile } from '@/api/system'
 
 export interface UserState {
   token: string
+  userInfo: any
 }
 
 const state: UserState = {
-  token: getItem('token') || ''
+  token: getItem('token') || '',
+  userInfo: null
 }
 
 const getters: GetterTree<UserState, RootState> = {}
@@ -16,10 +19,20 @@ const mutations: MutationTree<UserState> = {
   setToken (state, payload) {
     state.token = payload
     setItem('token', payload)
+  },
+  setUserInfo (state, payload) {
+    state.token = payload
+    setItem('userInfo', payload)
   }
 }
 
-const actions: ActionTree<UserState, RootState> = {}
+const actions: ActionTree<UserState, RootState> = {
+  async fetchUserProfile ({ commit }) {
+    const userInfo = await fetchUserProfile()
+    commit('setUserInfo', userInfo)
+    return userInfo
+  }
+}
 
 export default {
   namespaced: true,

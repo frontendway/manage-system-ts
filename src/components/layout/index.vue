@@ -8,7 +8,7 @@
         menu
       </div>
       <div class="container">
-        container
+        <router-view />
       </div>
     </div>
   </div>

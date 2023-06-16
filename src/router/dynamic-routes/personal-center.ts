@@ -2,12 +2,13 @@ import Layout from '@/components/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 const personalCenter: RouteRecordRaw = {
-  path: '/personal',
-  name: 'personal',
+  path: '/layout1',
+  name: 'layout1',
   component: Layout,
+  redirect: '/layout1/personalCenter',
   children: [
     {
-      path: 'personalCenter',
+      path: '/layout1/personalCenter',
       name: 'personalCenter',
       component: () => import('@/views/personal-center/index.vue')
     }
