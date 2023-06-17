@@ -4,12 +4,12 @@ import { setItem, getItem } from '@/utils/storage'
 import { fetchUserProfile } from '@/api/system'
 
 export interface UserState {
-  token: string
+  token: string | null
   userInfo: any
 }
 
 const state: UserState = {
-  token: getItem('token') || '',
+  token: getItem('token') || null,
   userInfo: null
 }
 
@@ -21,8 +21,7 @@ const mutations: MutationTree<UserState> = {
     setItem('token', payload)
   },
   setUserInfo (state, payload) {
-    state.token = payload
-    setItem('userInfo', payload)
+    state.userInfo = payload
   }
 }
 

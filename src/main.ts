@@ -6,6 +6,7 @@ import store, { key } from './store'
 import installGlobalComponents from './components'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import './assets/styles/index.scss'
 
 installBeforeEach(router)
 

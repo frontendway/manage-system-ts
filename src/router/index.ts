@@ -5,7 +5,7 @@ import staticRoutes from './static-rotes'
 declare module 'vue-router' {
   interface RouteMeta {
     title: string
-    icon: string
+    isMenu: boolean
   }
 }
 

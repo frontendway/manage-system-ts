@@ -2,7 +2,7 @@
   <div
     v-if="isExternal"
     class="svg-icon"
-    :class="{'svg-icon-external': isExternal}"
+    :class="{'external-icon': isExternal}"
     :style="externalIconStyle"
   />
   <svg
@@ -44,7 +44,7 @@ const innerIconLink = computed(() => `#icon-${props.url}`)
   height: 1em;
   display: inline-block;
 }
-.svg-icon-external{
+.external-icon{
   background-color: currentColor;
   mask-size: cover !important;
 }

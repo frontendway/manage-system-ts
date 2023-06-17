@@ -6,6 +6,10 @@ const personalCenter: RouteRecordRaw = {
   name: 'layout1',
   component: Layout,
   redirect: '/layout1/personalCenter',
+  meta: {
+    title: '个人中心',
+    isMenu: true
+  },
   children: [
     {
       path: '/layout1/personalCenter',

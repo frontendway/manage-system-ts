@@ -1,11 +1,6 @@
 <template>
   <div>
-    <p
-      v-for="item in 100"
-      :key="item"
-    >
-      个人中心
-    </p>
+    动态菜单
   </div>
 </template>
 

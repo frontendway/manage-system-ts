@@ -40,7 +40,6 @@ const addCurrentRoutes = (router: Router, routes: RouteRecordRaw[]) => {
 // 安装 beforeEach 钩子
 export const installBeforeEach = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
-    debugger
     const token = (store.state as State).user.token
     const userInfo = (store.state as State).user.userInfo
     const loginpath = to.fullPath === '/login'
@@ -50,6 +49,7 @@ export const installBeforeEach = (router: Router) => {
         const userInfo = await store.dispatch('user/fetchUserProfile')
         const currentRoutes = obtainCurrentRoutes(userInfo.data.permission.menus)
         addCurrentRoutes(router, currentRoutes)
+        return next(to.fullPath)
       }
       loginpath ? next('/') : next()
     } else {
