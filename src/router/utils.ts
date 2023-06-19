@@ -49,6 +49,7 @@ export const installBeforeEach = (router: Router) => {
         const userInfo = await store.dispatch('user/fetchUserProfile')
         const currentRoutes = obtainCurrentRoutes(userInfo.data.permission.menus)
         addCurrentRoutes(router, currentRoutes)
+        store.commit('user/setCurrentRoutes', currentRoutes)
         return next(to.fullPath)
       }
       loginpath ? next('/') : next()

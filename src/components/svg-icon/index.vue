@@ -14,13 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import { hasHttp } from '@/utils/index'
 
 const props = defineProps({
   url: {
     type: String,
-    default: ''
+    required: true
   }
 })
 

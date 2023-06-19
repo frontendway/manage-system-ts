@@ -16,7 +16,9 @@ const state: UserState = {
   currentRoutes: []
 }
 
-const getters: GetterTree<UserState, RootState> = {}
+const getters: GetterTree<UserState, RootState> = {
+
+}
 
 const mutations: MutationTree<UserState> = {
   setToken (state, payload) {
@@ -25,6 +27,9 @@ const mutations: MutationTree<UserState> = {
   },
   setUserInfo (state, payload) {
     state.userInfo = payload
+  },
+  setCurrentRoutes (state, payload) {
+    state.currentRoutes = payload
   }
 }
 

@@ -11,10 +11,19 @@ const groupOne: RouteRecordRaw = {
   },
   children: [
     {
-      name: 'dyMenus',
+      name: 'dyMenus1',
       path: '/groupOne/dyMenus',
       meta: {
-        title: '动态菜单',
+        title: '动态菜单1',
+        isMenu: true
+      },
+      component: () => import('@/views/dy-menus/index.vue')
+    },
+    {
+      name: 'dyMenus2',
+      path: '/groupOne/dyMenus',
+      meta: {
+        title: '动态菜单2',
         isMenu: true
       },
       component: () => import('@/views/dy-menus/index.vue')
