@@ -5,7 +5,7 @@ const personalCenter: RouteRecordRaw = {
   path: '/layout1',
   name: 'layout1',
   component: Layout,
-  redirect: '/layout1/personalCenter',
+  redirect: '/layout1/svg',
   meta: {
     title: 'SVG解决方案',
     isMenu: true

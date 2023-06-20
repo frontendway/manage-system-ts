@@ -17,7 +17,7 @@ const groupOne: RouteRecordRaw = {
         title: '动态面包屑',
         isMenu: true
       },
-      component: () => import('@/views/dy-menus/index.vue')
+      component: () => import('@/views/breadcrumb/index.vue')
     },
     {
       name: 'internationalization',
@@ -26,7 +26,7 @@ const groupOne: RouteRecordRaw = {
         title: '国际化',
         isMenu: true
       },
-      component: () => import('@/views/dy-menus/index.vue')
+      component: () => import('@/views/internationalization/index.vue')
     }
   ]
 }
