@@ -1,26 +1,26 @@
 <template>
   <div
-    v-if="route.meta && route.meta.isMenu"
+    v-if="routeItem.meta && routeItem.meta.isMenu"
     class="menu-item-outer"
   >
     <el-sub-menu
-      v-if="normalize(route)"
-      :index="route.path"
+      v-if="normalize(routeItem)"
+      :index="routeItem.path"
     >
       <template #title>
-        <span>{{ route.meta && route.meta.title }}</span>
+        <span>{{ routeItem.meta && routeItem.meta.title }}</span>
       </template>
       <menu-item
-        v-for="item in route.children"
+        v-for="item in routeItem.children"
         :key="item.path"
-        :route="item"
+        :route-item="item"
       />
     </el-sub-menu>
     <el-menu-item
       v-else
-      :index="route.path"
+      :index="routeItem.path"
     >
-      <span>{{ route.meta && route.meta.title }}</span>
+      <span>{{ routeItem.meta && routeItem.meta.title }}</span>
     </el-menu-item>
   </div>
 </template>
@@ -29,7 +29,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 type Props = {
-  route: RouteRecordRaw
+  routeItem: RouteRecordRaw
 }
 
 defineProps<Props>()

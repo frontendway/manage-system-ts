@@ -45,6 +45,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { loginApi } from '@/api/login'
 import { useStore } from '@/store'
 import { useRouter } from 'vue-router'
+import { setItem } from '@/utils/storage'
 
 const store = useStore()
 const router = useRouter()
@@ -85,6 +86,7 @@ const submitForm = () => {
         const { token } = resp.data
         store.commit('user/setToken', token)
         router.push('/')
+        setItem('LOGIN_TIME', Date.now())
       })
   })
 }

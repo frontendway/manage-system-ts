@@ -4,6 +4,7 @@ import type { ArbitrarilyData, ResponseData } from './types'
 import { ElMessage } from 'element-plus'
 import store from '@/store'
 import type { State } from '@/store'
+import { tokenIsExpire } from './utils'
 
 const instance = axios.create({
   baseURL: 'https://www.fastmock.site/mock/31450493ed987ee4de2e058fe4a35578/api',
@@ -14,6 +15,10 @@ instance.interceptors.request.use(
   config => {
     const token = (store.state as State).user.token
     if (token) {
+      if (tokenIsExpire()) {
+        ElMessage.error('登陆过期')
+        return Promise.reject(new Error('登陆过期'))
+      }
       config.headers.token = token
     }
 
@@ -33,6 +38,7 @@ instance.interceptors.response.use(
     return resp.data
   },
   err => {
+    ElMessage.error(err.message)
     return Promise.reject(err)
   }
 )

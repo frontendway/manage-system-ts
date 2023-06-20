@@ -1,6 +1,6 @@
 <template>
   <div>
-    动态菜单
+    动态面包
   </div>
 </template>
 
