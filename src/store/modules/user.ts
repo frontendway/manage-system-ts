@@ -3,6 +3,7 @@ import type { RootState } from '../index'
 import { setItem, getItem } from '@/utils/storage'
 import { fetchUserProfile } from '@/api/system'
 import type { RouteRecordRaw } from 'vue-router'
+import router from '@/router'
 
 export interface UserState {
   token: string | null
@@ -38,6 +39,13 @@ const actions: ActionTree<UserState, RootState> = {
     const userInfo = await fetchUserProfile()
     commit('setUserInfo', userInfo)
     return userInfo
+  },
+  logout ({ commit }) {
+    commit('setToken', null)
+    commit('setUserInfo', null)
+    commit('currentRoutes', [])
+    window.localStorage.clear()
+    router.push('/login')
   }
 }
 

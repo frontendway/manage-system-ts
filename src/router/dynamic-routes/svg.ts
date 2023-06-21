@@ -17,7 +17,7 @@ const personalCenter: RouteRecordRaw = {
       meta: {
         singleChild: true
       },
-      component: () => import('@/views/personal-center/index.vue')
+      component: () => import('@/views/svg/index.vue')
     }
   ]
 }

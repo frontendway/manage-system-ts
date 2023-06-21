@@ -17,6 +17,7 @@ instance.interceptors.request.use(
     if (token) {
       if (tokenIsExpire()) {
         ElMessage.error('登陆过期')
+        store.dispatch('user/logout')
         return Promise.reject(new Error('登陆过期'))
       }
       config.headers.token = token

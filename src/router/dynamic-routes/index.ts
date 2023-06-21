@@ -1,4 +1,4 @@
-import personalCenter from './personal-center'
+import personalCenter from './svg'
 import home from './home'
 import groupOne from './group-one'
 import type { RouteRecordRaw } from 'vue-router'

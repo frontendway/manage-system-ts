@@ -1,10 +1,9 @@
 <template>
-  <div>
-    动态面包
-  </div>
+  <breadcrumb />
 </template>
 
 <script setup lang="ts">
+import breadcrumb from '@/components/breadcrumb/index.vue'
 
 </script>
 
