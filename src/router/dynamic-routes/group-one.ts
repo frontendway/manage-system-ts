@@ -27,6 +27,15 @@ const groupOne: RouteRecordRaw = {
         isMenu: true
       },
       component: () => import('@/views/internationalization/index.vue')
+    },
+    {
+      name: 'customTheme',
+      path: '/groupOne/customTheme',
+      meta: {
+        title: '自定义主题',
+        isMenu: true
+      },
+      component: () => import('@/views/custom-theme/index.vue')
     }
   ]
 }
