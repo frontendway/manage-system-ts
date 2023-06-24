@@ -1,13 +1,10 @@
-import formula from '@/constant/formula.json'
+import formula from './formula.json'
 import rgbHex from 'rgb-hex'
 import color from 'css-color-function'
 import axios from 'axios'
 import eleJson from 'element-plus/package.json'
 import { DEFAULT_COLOR } from '@/constant/index'
-
-type CustomAttrs = {
-  [key: string]: any
-}
+import type { CommonAttrs } from '@/types'
 
 const version = eleJson.version
 
@@ -24,7 +21,7 @@ export const setNewCss = async (primary: string) => {
  * @description: 将 css 写入 style 标签中
  */
 const writeCss = (newCss: string) => {
-  const [document, _oldStyle] = [window.document, (window.document as CustomAttrs)._oldStyle]
+  const [document, _oldStyle] = [window.document, (window.document as CommonAttrs)._oldStyle]
   if (_oldStyle) {
     _oldStyle.innerText = newCss
     return
@@ -32,7 +29,7 @@ const writeCss = (newCss: string) => {
 
   const style = document.createElement('style')
   style.innerText = newCss
-  document.head.append((document as CustomAttrs)._oldStyle = style)
+  document.head.append((document as CommonAttrs)._oldStyle = style)
 }
 
 const cacheOriginCss = () => {
@@ -53,7 +50,7 @@ const _fetchOriginCss = cacheOriginCss()
 /**
  * @description: 获取当前 element-plus 的默认样式表，替换成用户选择的主题色
  */
-const fetchOriginCss = async (colors: CustomAttrs) => {
+const fetchOriginCss = async (colors: CommonAttrs) => {
   const { data } = await _fetchOriginCss()
   return createNewCss(data, colors)
 }
@@ -64,12 +61,12 @@ const fetchOriginCss = async (colors: CustomAttrs) => {
 const generatorColors = (primary: string) => {
   if (!primary) return
 
-  const colors: CustomAttrs = {
+  const colors: CommonAttrs = {
     primary
   }
   Object.keys(formula).forEach(key => {
     const value = formula[key as keyof typeof formula].replace(/primary/g, primary)
-    colors[key] = '#' + rgbHex((color as CustomAttrs).convert(value))
+    colors[key] = '#' + rgbHex((color as CommonAttrs).convert(value))
   })
 
   return colors
@@ -78,7 +75,7 @@ const generatorColors = (primary: string) => {
 /**
  * @description: 将原有样式表中的色值替换成当前主题色色值
  */
-const createNewCss = (data: string, colors: CustomAttrs) => {
+const createNewCss = (data: string, colors: CommonAttrs) => {
   const colorsMap = {
     [DEFAULT_COLOR]: 'primary',
     '#3a8ee6': 'shade-1',

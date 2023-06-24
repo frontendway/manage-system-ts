@@ -8,15 +8,13 @@ const personalCenter: RouteRecordRaw = {
   redirect: '/layout1/svg',
   meta: {
     title: 'SVG解决方案',
-    isMenu: true
+    isMenu: true,
+    singleChild: true
   },
   children: [
     {
       path: '/layout1/svg',
       name: 'svg',
-      meta: {
-        singleChild: true
-      },
       component: () => import('@/views/svg/index.vue')
     }
   ]

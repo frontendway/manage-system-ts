@@ -20,7 +20,7 @@ const store = useStore()
 const route = useRoute()
 
 let currentRoutePath = ''
-if (route.meta.singleChild) {
+if (route.meta.singleChild === true) {
   const firstRoute = route.matched[0]
   currentRoutePath = firstRoute && firstRoute.path
 } else {

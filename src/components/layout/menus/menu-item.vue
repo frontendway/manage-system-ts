@@ -4,7 +4,7 @@
     class="menu-item-outer"
   >
     <el-sub-menu
-      v-if="normalize(routeItem)"
+      v-if="routeItem.meta.singleChild === false"
       :index="routeItem.path"
     >
       <template #title>
@@ -33,11 +33,6 @@ type Props = {
 }
 
 defineProps<Props>()
-
-const normalize = (route: RouteRecordRaw) => {
-  const children = route.children
-  return children && children.length > 1
-}
 
 </script>
 

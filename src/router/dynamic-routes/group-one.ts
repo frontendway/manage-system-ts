@@ -7,7 +7,8 @@ const groupOne: RouteRecordRaw = {
   component: Layout,
   meta: {
     title: '一组',
-    isMenu: true
+    isMenu: true,
+    singleChild: false
   },
   children: [
     {
